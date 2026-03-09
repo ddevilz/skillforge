@@ -41,11 +41,11 @@ jobs:
 
     - name: Run type checking
       run: |
-        uv run mypy skillforge/ --ignore-missing-imports
+        uv run mypy toolmark/ --ignore-missing-imports
 
     - name: Run security check
       run: |
-        uv run bandit -r skillforge/ -f json -o bandit-report.json || true
+        uv run bandit -r toolmark/ -f json -o bandit-report.json || true
 
     - name: Run tests
       run: |

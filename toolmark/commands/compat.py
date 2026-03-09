@@ -21,13 +21,13 @@ from rich import box
 from rich.console import Console
 from rich.table import Table
 
-from skillforge.models import (
+from toolmark.models import (
     CompatReport,
     CompatStatus,
     Platform,
     PlatformCompatResult,
 )
-from skillforge.utils.manifest import load_manifest
+from toolmark.utils.manifest import load_manifest
 
 console = Console()
 

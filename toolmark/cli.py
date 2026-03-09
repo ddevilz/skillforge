@@ -7,15 +7,15 @@ import typer
 from rich.console import Console
 from rich.panel import Panel
 
-from skillforge.commands.bench import bench_command
-from skillforge.commands.compat import compat_command
-from skillforge.commands.init import init_command
-from skillforge.commands.publish import publish_command
-from skillforge.commands.scan import scan_command
-from skillforge.commands.test import test_command
+from toolmark.commands.bench import bench_command
+from toolmark.commands.compat import compat_command
+from toolmark.commands.init import init_command
+from toolmark.commands.publish import publish_command
+from toolmark.commands.scan import scan_command
+from toolmark.commands.test import test_command
 
 app = typer.Typer(
-    name="skillforge",
+    name="toolmark",
     help="Build, test, and publish AI agent skills across every platform.",
     no_args_is_help=True,
     rich_markup_mode="rich",
@@ -25,7 +25,7 @@ app = typer.Typer(
 console = Console()
 
 BANNER = """
-[bold red]SkillForge[/] [dim]v0.1.0[/]
+[bold red]ToolMark[/] [dim]v0.1.0[/]
 [dim]Build. Test. Sign. Ship — Across Every Agent Platform.[/]
 """
 

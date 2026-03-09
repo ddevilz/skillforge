@@ -36,7 +36,7 @@ If applicable, steps to reproduce or demonstrate the issue:
 3. Step 3
 
 ## 📊 Environment
-- **SkillForge version**: [e.g. 0.1.0]
+- **toolmark version**: [e.g. 0.1.0]
 - **Python version**: [e.g. 3.12.0]
 - **OS**: [e.g. Ubuntu 22.04, macOS 13.0, Windows 11]
 

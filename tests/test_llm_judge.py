@@ -1,5 +1,5 @@
 """
-Tests for skillforge.utils.llm — LLM-as-judge evaluation.
+Tests for toolmark.utils.llm — LLM-as-judge evaluation.
 Uses mocks — no real API calls made.
 """
 
@@ -9,8 +9,8 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from skillforge.models import SkillTestCase, ToleranceLevel
-from skillforge.utils.llm import llm_judge
+from toolmark.models import SkillTestCase, ToleranceLevel
+from toolmark.utils.llm import llm_judge
 
 
 def _make_test_case(**kwargs) -> SkillTestCase:
@@ -32,7 +32,7 @@ class TestLLMJudge:
             {"passed": True, "confidence": 0.95, "reasoning": "Exact match."}
         )
 
-        with patch("skillforge.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
+        with patch("toolmark.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
             mock_call.return_value = (
                 judge_response,
                 {"prompt_tokens": 100, "completion_tokens": 20},
@@ -55,7 +55,7 @@ class TestLLMJudge:
             {"passed": False, "confidence": 0.9, "reasoning": "Wrong tool invoked."}
         )
 
-        with patch("skillforge.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
+        with patch("toolmark.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
             mock_call.return_value = (judge_response, {})
             passed, conf, reasoning = await llm_judge(
                 model="test-model",
@@ -71,7 +71,7 @@ class TestLLMJudge:
     @pytest.mark.asyncio
     async def test_judge_fallback_on_unparseable_response(self):
         """If judge returns non-JSON, fallback heuristic should be used."""
-        with patch("skillforge.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
+        with patch("toolmark.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
             mock_call.return_value = ("not json at all", {})
             passed, conf, reasoning = await llm_judge(
                 model="test-model",
@@ -92,7 +92,7 @@ class TestLLMJudge:
             {"passed": True, "confidence": 0.99, "reasoning": "Correctly not invoked."}
         )
 
-        with patch("skillforge.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
+        with patch("toolmark.utils.llm.llm_call", new_callable=AsyncMock) as mock_call:
             mock_call.return_value = (judge_response, {})
             passed, conf, _ = await llm_judge(
                 model="test-model",

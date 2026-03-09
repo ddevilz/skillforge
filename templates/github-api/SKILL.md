@@ -1,6 +1,6 @@
 # github-api
 
-A SkillForge skill for searching and managing GitHub pull requests, issues, and repositories.
+A toolmark tool for searching and managing GitHub pull requests, issues, and repositories.
 
 ## Tools
 

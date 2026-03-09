@@ -1,25 +1,25 @@
-# SkillForge 🔨
+# ToolMark 🔨
 
-> **ESLint + Jest + npm publish — for AI Agent Skills.**
+> **ESLint + Jest + npm publish — for AI Agent Tools.**
 
-Build, test, scan, and ship skills across **OpenClaw/ClawHub**, **Claude Code**, **Cursor**, and **Windsurf** — from a single CLI.
+Build, test, scan, and ship tools across **OpenClaw/ClawHub**, **Claude Code**, **Cursor**, and **Windsurf** — from a single CLI.
 
-[![PyPI](https://img.shields.io/pypi/v/skillforge)](https://pypi.org/project/skillforge/)
+[![PyPI](https://img.shields.io/pypi/v/toolmark)](https://pypi.org/project/toolmark/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Tests](https://github.com/ddevilz/skillforge/actions/workflows/skillforge.yml/badge.svg)](https://github.com/ddevilz/skillforge/actions)
+[![Tests](https://github.com/ddevilz/toolmark/actions/workflows/toolmark.yml/badge.svg)](https://github.com/ddevilz/toolmark/actions)
 
 ---
 
-## Why SkillForge?
+## Why ToolMark?
 
-13,000+ skills are published on ClawHub. **13% contain critical security flaws** *(Snyk ToxicSkills Report, Feb 2026)*. Skills break silently on platforms other than the one they were tested on. There is no `pytest` for agent skills — until now.
+13,000+ tools are published on ClawHub. **13% contain critical security flaws** *(Snyk ToxicTools Report, Feb 2026)*. Tools break silently on platforms other than the one they were tested on. There is no `pytest` for agent tools — until now.
 
 ```
-skillforge init my-skill --template github-api
-skillforge test          # LLM-as-judge evaluation
-skillforge scan          # prompt injection, dynamic fetch, credential leaks
-skillforge compat        # check all 4 platforms at once
-skillforge publish       # sign with Ed25519, push to ClawHub + Claude Code
+toolmark init my-tool --template github-api
+toolmark test          # LLM-as-judge evaluation
+toolmark scan          # prompt injection, dynamic fetch, credential leaks
+toolmark compat        # check all 4 platforms at once
+toolmark publish       # sign with Ed25519, push to ClawHub + Claude Code
 ```
 
 ---
@@ -27,7 +27,7 @@ skillforge publish       # sign with Ed25519, push to ClawHub + Claude Code
 ## Install
 
 ```bash
-pip install skillforge
+pip install toolmark
 ```
 
 Requires Python 3.12+.
@@ -38,22 +38,22 @@ Requires Python 3.12+.
 
 ```bash
 # 1. Scaffold
-skillforge init my-github-skill --template github-api
+toolmark init my-github-tool --template github-api
 
-# 2. Edit SKILL.md and tests/
-cd my-github-skill
+# 2. Edit tool.md and tests/
+cd my-github-tool
 
 # 3. Test
-ANTHROPIC_API_KEY=sk-ant-... skillforge test
+ANTHROPIC_API_KEY=sk-ant-... toolmark test
 
 # 4. Scan
-skillforge scan
+toolmark scan
 
 # 5. Check platform compatibility
-skillforge compat
+toolmark compat
 
 # 6. Publish
-skillforge publish --platforms clawhub,claude-code
+toolmark publish --platforms clawhub,claude-code
 ```
 
 ---
@@ -62,24 +62,24 @@ skillforge publish --platforms clawhub,claude-code
 
 | Command               | What it does                                              |
 |-----------------------|-----------------------------------------------------------|
-| `skillforge init`     | Scaffold a new skill from a template                      |
-| `skillforge test`     | LLM-as-judge evaluation against YAML test cases           |
-| `skillforge scan`     | Security scanner (prompt injection, dynamic fetch, creds) |
-| `skillforge compat`   | Cross-platform compatibility check (4 platforms)          |
-| `skillforge bench`    | Benchmark latency, tokens, compute quality score (0–100)  |
-| `skillforge publish`  | Sign with Ed25519, publish to configured registries       |
+| `toolmark init`     | Scaffold a new tool from a template                      |
+| `toolmark test`     | LLM-as-judge evaluation against YAML test cases           |
+| `toolmark scan`     | Security scanner (prompt injection, dynamic fetch, creds) |
+| `toolmark compat`   | Cross-platform compatibility check (4 platforms)          |
+| `toolmark bench`    | Benchmark latency, tokens, compute quality score (0–100)  |
+| `toolmark publish`  | Sign with Ed25519, publish to configured registries       |
 
 ---
 
 ## Templates
 
 ```bash
-skillforge init my-skill --template github-api      # GitHub REST API wrapper
-skillforge init my-skill --template file-ops         # Local filesystem skill
-skillforge init my-skill --template mcp-integration  # Wraps an MCP server tool
-skillforge init my-skill --template web-search       # Search API skill
-skillforge init my-skill --template loom-query       # Loom knowledge graph skill
-skillforge init my-skill --template blank            # Minimal scaffold
+toolmark init my-tool --template github-api      # GitHub REST API wrapper
+toolmark init my-tool --template file-ops         # Local filesystem tool
+toolmark init my-tool --template mcp-integration  # Wraps an MCP server tool
+toolmark init my-tool --template web-search       # Search API tool
+toolmark init my-tool --template loom-query       # Loom knowledge graph tool
+toolmark init my-tool --template blank            # Minimal scaffold
 ```
 
 ---
@@ -99,13 +99,13 @@ skillforge init my-skill --template blank            # Minimal scaffold
   tags: [smoke]
 ```
 
-Run: `skillforge test --tags smoke`
+Run: `toolmark test --tags smoke`
 
 ---
 
 ## Security
 
-SkillForge catches:
+toolmark catches:
 - **SF001** — Dynamic fetch (`curl | bash`, `eval(fetch(...))`)
 - **SF002** — Hardcoded credentials (API keys, passwords)
 - **SF003** — Prompt injection phrases in tool descriptions
@@ -116,32 +116,32 @@ SkillForge catches:
 
 ## Provenance Signing
 
-Every published skill is signed with Ed25519:
+Every published tool is signed with Ed25519:
 
 ```bash
-skillforge keygen              # creates ~/.skillforge/signing.key
-skillforge publish --sign      # signs + publishes
-skillforge verify my-skill     # verify any published skill
+toolmark keygen              # creates ~/.toolmark/signing.key
+toolmark publish --sign      # signs + publishes
+toolmark verify my-tool     # verify any published tool
 ```
 
 ---
 
 ## GitHub Actions
 
-Every `skillforge init` project includes a ready-to-use workflow:
+Every `toolmark init` project includes a ready-to-use workflow:
 
 ```yaml
-# .github/workflows/skillforge.yml — already in your project
-- skillforge compat    # platform check
-- skillforge scan      # security gate
-- skillforge test      # LLM evaluation (needs ANTHROPIC_API_KEY secret)
+# .github/workflows/toolmark.yml — already in your project
+- toolmark compat    # platform check
+- toolmark scan      # security gate
+- toolmark test      # LLM evaluation (needs ANTHROPIC_API_KEY secret)
 ```
 
 ---
 
 ## Quality Leaderboard
 
-See how your skill ranks: **[skillforge.dev/leaderboard](https://skillforge.dev/leaderboard)**
+See how your tool ranks: **[toolmark.dev/leaderboard](https://toolmark.dev/leaderboard)**
 
 Quality Score = test pass rate (50%) + security score (30%) + compat score (20%).
 
@@ -164,7 +164,7 @@ Quality Score = test pass rate (50%) + security score (30%) + compat score (20%)
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). We always have [good first issues](https://github.com/ddevilz/skillforge/issues?q=label%3A%22good+first+issue%22).
+See [CONTRIBUTING.md](CONTRIBUTING.md). We always have [good first issues](https://github.com/ddevilz/toolmark/issues?q=label%3A%22good+first+issue%22).
 
 ## License
 

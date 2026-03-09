@@ -22,8 +22,8 @@ import typer
 from rich.console import Console
 from rich.panel import Panel
 
-from skillforge.models import BenchResult
-from skillforge.utils.manifest import load_manifest
+from toolmark.models import BenchResult
+from toolmark.utils.manifest import load_manifest
 
 console = Console()
 
@@ -89,8 +89,8 @@ def bench_command(
     skill_dir = Path(skill_dir)
     import asyncio
 
-    from skillforge.commands.test import _load_test_cases, _run_single_case
-    from skillforge.config import load_config
+    from toolmark.commands.test import _load_test_cases, _run_single_case
+    from toolmark.config import load_config
 
     cfg = load_config()
     _model = model or cfg.llm_model

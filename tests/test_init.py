@@ -1,5 +1,5 @@
 """
-Tests for skillforge.commands.init
+Tests for toolmark.commands.init
 """
 
 import json
@@ -7,7 +7,7 @@ import json
 import pytest
 from typer.testing import CliRunner
 
-from skillforge.cli import app
+from toolmark.cli import app
 
 runner = CliRunner()
 
@@ -38,9 +38,9 @@ class TestInitCommand:
         assert len(content) > 20, "SKILL.md appears empty"
 
     def test_init_creates_skillforge_yml(self, tmp_skill_dir):
-        """init should create a .skillforge.yml project config."""
+        """init should create a .toolmark.yml project config."""
         runner.invoke(app, ["init", "my-skill", "--dir", str(tmp_skill_dir)])
-        cfg = tmp_skill_dir / "my-skill" / ".skillforge.yml"
+        cfg = tmp_skill_dir / "my-skill" / ".toolmark.yml"
         assert cfg.exists()
         content = cfg.read_text()
         assert "my-skill" in content
@@ -48,8 +48,8 @@ class TestInitCommand:
     def test_init_creates_github_actions(self, tmp_skill_dir):
         """init should copy the GitHub Actions workflow."""
         runner.invoke(app, ["init", "my-skill", "--dir", str(tmp_skill_dir)])
-        workflow = tmp_skill_dir / "my-skill" / ".github" / "workflows" / "skillforge.yml"
-        assert workflow.exists(), ".github/workflows/skillforge.yml not created"
+        workflow = tmp_skill_dir / "my-skill" / ".github" / "workflows" / "toolmark.yml"
+        assert workflow.exists(), ".github/workflows/toolmark.yml not created"
 
     def test_init_with_invalid_name_raises(self, tmp_skill_dir):
         """init should reject names that aren't kebab-case."""

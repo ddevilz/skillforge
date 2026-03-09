@@ -1,11 +1,11 @@
 """
-Tests for skillforge.models — schema validation, edge cases, field validators.
+Tests for toolmark.models — schema validation, edge cases, field validators.
 """
 
 import pytest
 from pydantic import ValidationError
 
-from skillforge.models import (
+from toolmark.models import (
     CompatReport,
     CompatStatus,
     Platform,

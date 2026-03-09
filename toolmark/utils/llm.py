@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from skillforge.models import SkillTestCase
+from toolmark.models import SkillTestCase
 
 
 async def llm_call(

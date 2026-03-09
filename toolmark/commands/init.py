@@ -18,8 +18,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.tree import Tree
 
-from skillforge.models import Platform, SkillManifest
-from skillforge.utils.fs import find_templates_dir
+from toolmark.models import Platform, SkillManifest
+from toolmark.utils.fs import find_templates_dir
 
 console = Console()
 
@@ -118,8 +118,8 @@ def init_command(
         json.dumps(manifest.model_dump(mode="json", exclude_none=True), indent=2)
     )
 
-    # ── Write .skillforge.yml ─────────────────────────────────────────────────
-    skill_forge_yml = skill_dir / ".skillforge.yml"
+    # ── Write .toolmark.yml ─────────────────────────────────────────────────
+    skill_forge_yml = skill_dir / ".toolmark.yml"
     skill_forge_yml.write_text(
         f"name: {name}\n"
         f"template: {template}\n"
@@ -130,9 +130,9 @@ def init_command(
     # ── Copy GitHub Actions workflow ──────────────────────────────────────────
     gha_dir = skill_dir / ".github" / "workflows"
     gha_dir.mkdir(parents=True, exist_ok=True)
-    gha_workflow = find_templates_dir() / "_shared" / "skillforge.yml"
+    gha_workflow = find_templates_dir() / "_shared" / "toolmark.yml"
     if gha_workflow.exists():
-        shutil.copy(gha_workflow, gha_dir / "skillforge.yml")
+        shutil.copy(gha_workflow, gha_dir / "toolmark.yml")
 
     # ── Print summary tree ────────────────────────────────────────────────────
     tree = Tree(f"[bold cyan]{name}/[/]")

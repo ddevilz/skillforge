@@ -1,6 +1,6 @@
 # $name
 
-TODO: Describe what your skill does.
+TODO: Describe what your tool does.
 
 ## Tools
 

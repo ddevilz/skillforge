@@ -1,4 +1,4 @@
-"""Filesystem helpers for SkillForge."""
+"""Filesystem helpers for toolmark."""
 
 from __future__ import annotations
 

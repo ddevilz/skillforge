@@ -38,20 +38,20 @@ Please include:
 
 ### Security Features
 
-SkillForge includes several built-in security features:
+toolmark includes several built-in security features:
 
 - **SF001** - Dynamic fetch detection
 - **SF002** - Hardcoded credential detection  
 - **SF003** - Prompt injection detection
 - **SF004** - Undeclared network endpoint detection
-- **Ed25519** - Provenance signing for all published skills
+- **Ed25519** - Provenance signing for all published tools
 
 ### Security Scanning
 
-All skills are automatically scanned before publishing:
+All tools are automatically scanned before publishing:
 
 ```bash
-skillforge scan  # Built-in rules + Snyk integration
+toolmark scan  # Built-in rules + Snyk integration
 ```
 
 ### Responsible Disclosure Program
@@ -63,11 +63,11 @@ We believe in responsible disclosure and will work with researchers to:
 3. Coordinate disclosure timelines
 4. Consider bounty payments for critical issues
 
-### Security Best Practices for Skill Authors
+### Security Best Practices for tool Authors
 
 1. **Never hardcode credentials** - use environment variables
-2. **Declare all network endpoints** in `skill.json`
+2. **Declare all network endpoints** in `tool.json`
 3. **Avoid dynamic code execution** patterns
 4. **Review tool descriptions** for prompt injection risks
-5. **Sign your skills** with Ed25519 keys
+5. **Sign your tools** with Ed25519 keys
 6. **Run security scans** before publishing

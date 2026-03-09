@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 A clear and concise description of what actually happened.
 
 ## 📋 Environment
-- **SkillForge version**: [e.g. 0.1.0]
+- **toolmark version**: [e.g. 0.1.0]
 - **Python version**: [e.g. 3.12.0]
 - **OS**: [e.g. Ubuntu 22.04, macOS 13.0, Windows 11]
 - **Template** (if applicable): [e.g. github-api, blank]
@@ -32,7 +32,7 @@ A clear and concise description of what actually happened.
 ## 📝 Command Used
 ```bash
 # Paste the command you ran
-skillforge ...
+toolmark ...
 ```
 
 ## 📊 Error Output
@@ -43,13 +43,13 @@ skillforge ...
 ## 📎 Additional Context
 Add any other context about the problem here:
 - Screenshots (if applicable)
-- Skill configuration (skill.json, SKILL.md)
+- tool configuration (tool.json, tool.md)
 - Related issues or discussions
 
 ## 🔍 Debugging Information
 If you can, please run with debug mode enabled:
 ```bash
-skillforge --debug <command>
+toolmark --debug <command>
 ```
 
 ## ✨ Possible Solution

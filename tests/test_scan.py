@@ -1,15 +1,15 @@
 """
-Tests for skillforge.commands.scan — built-in security rules.
+Tests for toolmark.commands.scan — built-in security rules.
 These tests do NOT require Snyk or a live API key.
 """
 
-from skillforge.commands.scan import (
+from toolmark.commands.scan import (
     _scan_dynamic_fetch,
     _scan_hardcoded_creds,
     _scan_prompt_injection,
     _scan_undeclared_permissions,
 )
-from skillforge.models import Severity
+from toolmark.models import Severity
 
 
 class TestDynamicFetchScanner:

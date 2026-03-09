@@ -1,11 +1,11 @@
 """
-Tests for skillforge.config — configuration loading and merging.
+Tests for toolmark.config — configuration loading and merging.
 """
 
 import os
 from unittest.mock import patch
 
-from skillforge.config import SkillForgeConfig, load_config
+from toolmark.config import SkillForgeConfig, load_config
 
 
 class TestConfigLoading:
@@ -34,7 +34,7 @@ class TestConfigLoading:
         assert cfg.scan_block_on_high is True
 
     def test_default_platforms_clawhub(self):
-        from skillforge.models import Platform
+        from toolmark.models import Platform
 
         cfg = load_config()
         assert Platform.CLAWHUB in cfg.default_platforms

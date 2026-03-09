@@ -10,7 +10,7 @@
 - [ ] Code follows the project's style guidelines
 - [ ] I have run `ruff check .` and fixed all issues
 - [ ] I have run `ruff format .` to format the code
-- [ ] I have run `mypy skillforge/` for type checking
+- [ ] I have run `mypy toolmark/` for type checking
 - [ ] I have added type hints where appropriate
 
 ### 📚 Documentation
@@ -21,7 +21,7 @@
 
 ### 🔒 Security
 - [ ] I have considered security implications of my changes
-- [ ] I have run `skillforge scan` on any test skills
+- [ ] I have run `toolmark scan` on any test tools
 - [ ] No hardcoded credentials or secrets are included
 - [ ] Dependencies are secure and up-to-date
 
@@ -102,4 +102,4 @@ Add any other context about the pull request here.
 
 ---
 
-**Thank you for contributing to SkillForge! 🎉**
+**Thank you for contributing to toolmark! 🎉**

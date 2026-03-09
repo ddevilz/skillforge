@@ -1,4 +1,4 @@
-from skillforge.models.skill import (
+from toolmark.models.skill import (
     BenchResult,
     CompatReport,
     CompatStatus,

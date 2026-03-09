@@ -8,7 +8,7 @@ from pathlib import Path
 import typer
 from rich.console import Console
 
-from skillforge.models import SkillManifest
+from toolmark.models import SkillManifest
 
 console = Console()
 

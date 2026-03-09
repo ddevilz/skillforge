@@ -18,8 +18,8 @@ from pathlib import Path
 import typer
 from rich.console import Console
 
-from skillforge.models import Platform, SkillManifest, SkillSignature
-from skillforge.utils.manifest import load_manifest
+from toolmark.models import Platform, SkillManifest, SkillSignature
+from toolmark.utils.manifest import load_manifest
 
 console = Console()
 
@@ -72,7 +72,7 @@ def _publish_to_clawhub(manifest: SkillManifest, skill_dir: Path, dry_run: bool)
     """POST skill to ClawHub API."""
     import httpx
 
-    from skillforge.config import load_config
+    from toolmark.config import load_config
 
     cfg = load_config()
 
@@ -127,8 +127,8 @@ def publish_command(
     ),
 ) -> None:
     """Sign and publish skill to ClawHub, Claude Code, Cursor, or Windsurf."""
-    from skillforge.commands.scan import scan_command
-    from skillforge.config import load_config
+    from toolmark.commands.scan import scan_command
+    from toolmark.config import load_config
 
     # Convert string path to Path object
     skill_dir = Path(skill_dir)

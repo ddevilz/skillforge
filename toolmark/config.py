@@ -4,7 +4,7 @@ SkillForge configuration loader.
 Priority (highest → lowest):
   1. CLI flags (handled per-command with typer options)
   2. Environment variables  (SKILLFORGE_*)
-  3. .skillforge.yml        (project-level)
+  3. .toolmark.yml        (project-level)
   4. ~/.skillforge/config.yml (user-level)
   5. Built-in defaults
 """
@@ -18,9 +18,9 @@ from typing import Any
 import yaml
 from pydantic import BaseModel, Field
 
-from skillforge.models.skill import Platform
+from toolmark.models.skill import Platform
 
-_PROJECT_CONFIG = Path(".skillforge.yml")
+_PROJECT_CONFIG = Path(".toolmark.yml")
 _USER_CONFIG = Path.home() / ".skillforge" / "config.yml"
 _USER_KEY = Path.home() / ".skillforge" / "signing.key"
 _USER_PUBKEY = Path.home() / ".skillforge" / "signing.pub"
@@ -89,7 +89,7 @@ def load_config() -> SkillForgeConfig:
 
 
 def write_project_config(config: dict[str, Any]) -> None:
-    """Write or update .skillforge.yml in the current directory."""
+    """Write or update .toolmark.yml in the current directory."""
     existing = _load_yaml(_PROJECT_CONFIG)
     existing.update(config)
     with _PROJECT_CONFIG.open("w") as f:

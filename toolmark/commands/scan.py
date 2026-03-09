@@ -24,8 +24,8 @@ from rich import box
 from rich.console import Console
 from rich.table import Table
 
-from skillforge.models import ScanFinding, ScanReport, Severity
-from skillforge.utils.manifest import load_manifest
+from toolmark.models import ScanFinding, ScanReport, Severity
+from toolmark.utils.manifest import load_manifest
 
 console = Console()
 
@@ -175,7 +175,7 @@ def scan_command(
     strict: bool = typer.Option(DEFAULT_STRICT, "--strict", help="Also fail on MEDIUM findings"),
 ) -> None:
     """Run security scanner — prompt injection, dynamic fetch, creds, undeclared permissions."""
-    from skillforge.config import load_config
+    from toolmark.config import load_config
 
     # Convert string path to Path object
     skill_dir = Path(skill_dir)

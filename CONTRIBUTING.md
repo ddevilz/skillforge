@@ -1,6 +1,6 @@
-# Contributing to SkillForge
+# Contributing to toolmark
 
-Thank you for your interest in contributing to SkillForge! This document provides comprehensive guidelines for contributing to the project.
+Thank you for your interest in contributing to toolmark! This document provides comprehensive guidelines for contributing to the project.
 
 ## Table of Contents
 
@@ -25,8 +25,8 @@ Thank you for your interest in contributing to SkillForge! This document provide
 
 ```bash
 # Clone the repository
-git clone https://github.com/ddevilz/skillforge.git
-cd skillforge
+git clone https://github.com/ddevilz/toolmark.git
+cd toolmark
 
 # Set up development environment
 python -m venv .venv
@@ -48,12 +48,12 @@ For development, you may want to set:
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...  # For LLM testing
 export GITHUB_TOKEN=ghp_...          # For GitHub API tests
-export SKILLFORGE_DEV=1               # Enable dev features
+export toolmark_DEV=1               # Enable dev features
 ```
 
 ### Development Tools
 
-SkillForge uses the following tools:
+toolmark uses the following tools:
 
 - **Ruff** - Linting and formatting
 - **MyPy** - Type checking
@@ -75,18 +75,18 @@ We welcome contributions in many forms:
 1. **Bug Reports** - Found an issue? Please report it!
 2. **Feature Requests** - Have an idea? We'd love to hear it!
 3. **Code Contributions** - Fix bugs, add features, improve documentation
-4. **Skill Templates** - Create new skill templates
-5. **Security Improvements** - Help make skills more secure
+4. **tool Templates** - Create new tool templates
+5. **Security Improvements** - Help make tools more secure
 6. **Documentation** - Improve docs, examples, tutorials
 
 ### Good First Issues
 
 Start here! Look for issues labeled `good first issue`:
 
-https://github.com/ddevilz/skillforge/issues?q=label%3A%22good+first+issue%22
+https://github.com/ddevilz/toolmark/issues?q=label%3A%22good+first+issue%22
 
 Examples of good first issues:
-- Add a new skill template
+- Add a new tool template
 - Improve error messages
 - Add a new security rule
 - Write more test cases
@@ -114,7 +114,7 @@ ruff check --fix .    # Auto-fix issues
 ### Type Checking
 
 ```bash
-mypy skillforge/      # Type check the codebase
+mypy toolmark/      # Type check the codebase
 ```
 
 ### Code Guidelines
@@ -131,20 +131,20 @@ mypy skillforge/      # Type check the codebase
 """Google-style docstring.
 
 Args:
-    skill_dir: Path to the skill directory.
+    tool_dir: Path to the tool directory.
     strict: Whether to fail on medium severity findings.
 
 Returns:
     ScanReport containing all findings.
 
 Raises:
-    FileNotFoundError: If skill.json is not found.
+    FileNotFoundError: If tool.json is not found.
     ValidationError: If manifest is invalid.
 """
-def scan_skill(skill_dir: Path, strict: bool = False) -> ScanReport:
-    """Scan a skill for security issues."""
-    manifest = load_manifest(skill_dir)
-    findings = list(_run_scan_rules(manifest, skill_dir))
+def scan_tool(tool_dir: Path, strict: bool = False) -> ScanReport:
+    """Scan a tool for security issues."""
+    manifest = load_manifest(tool_dir)
+    findings = list(_run_scan_rules(manifest, tool_dir))
     
     if strict and any(f.severity == Severity.MEDIUM for f in findings):
         raise SecurityError("Medium severity findings found in strict mode")
@@ -161,7 +161,7 @@ def scan_skill(skill_dir: Path, strict: bool = False) -> ScanReport:
 pytest tests/ -v
 
 # Run with coverage
-pytest --cov=skillforge tests/
+pytest --cov=toolmark tests/
 
 # Run specific test file
 pytest tests/test_scan.py -v
@@ -192,20 +192,20 @@ tests/
 ```python
 def test_scan_finds_hardcoded_creds(tmp_path: Path):
     """Test that scan finds hardcoded credentials."""
-    skill_json = {
-        "name": "test-skill",
+    tool_json = {
+        "name": "test-tool",
         "version": "0.1.0",
         "author": "test",
-        "description": "Test skill",
+        "description": "Test tool",
         "tools": []
     }
     
-    skill_dir = tmp_path / "test-skill"
-    skill_dir.mkdir()
-    (skill_dir / "skill.json").write_text(json.dumps(skill_json))
-    (skill_dir / "SKILL.md").write_text("API_KEY = 'sk-1234567890abcdef'")
+    tool_dir = tmp_path / "test-tool"
+    tool_dir.mkdir()
+    (tool_dir / "tool.json").write_text(json.dumps(tool_json))
+    (tool_dir / "tool.md").write_text("API_KEY = 'sk-1234567890abcdef'")
     
-    findings = list(_scan_hardcoded_creds("API_KEY = 'sk-1234567890abcdef'", "SKILL.md"))
+    findings = list(_scan_hardcoded_creds("API_KEY = 'sk-1234567890abcdef'", "tool.md"))
     
     assert len(findings) == 1
     assert findings[0].rule_id == "SF002"
@@ -260,7 +260,7 @@ docs/                    # If you add a docs folder
 3. **Make changes** following the guidelines above
 4. **Add tests** for your changes
 5. **Run the test suite**: `pytest tests/`
-6. **Check code quality**: `ruff check . && mypy skillforge/`
+6. **Check code quality**: `ruff check . && mypy toolmark/`
 7. **Commit your changes**: `git commit -m "Add amazing feature"`
 8. **Push to your fork**: `git push origin feature/amazing-feature`
 9. **Open a Pull Request**
@@ -316,8 +316,8 @@ We follow [Semantic Versioning](https://semver.org/):
 
 1. **Update version** in `pyproject.toml`
 2. **Update CHANGELOG.md** with changes
-3. **Run full test suite**: `pytest tests/ --cov=skillforge`
-4. **Check code quality**: `ruff check . && mypy skillforge/`
+3. **Run full test suite**: `pytest tests/ --cov=toolmark`
+4. **Check code quality**: `ruff check . && mypy toolmark/`
 5. **Build package**: `python -m build`
 6. **Tag release**: `git tag v0.1.0`
 7. **Push tag**: `git push origin v0.1.0`
@@ -348,10 +348,10 @@ Contributors are recognized in several ways:
 - **README.md** - Top contributors acknowledged
 - **Community Spotlight** - Featured in blog posts/social media
 
-Thank you for contributing to SkillForge! 🎉
+Thank you for contributing to toolmark! 🎉
 
 ---
 
 For questions about contributing, reach out to us at:
-- GitHub Issues: https://github.com/ddevilz/skillforge/issues
-- Email: contribute@skillforge.dev
+- GitHub Issues: https://github.com/ddevilz/toolmark/issues
+- Email: contribute@toolmark.dev

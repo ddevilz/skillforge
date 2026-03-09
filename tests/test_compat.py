@@ -1,10 +1,10 @@
 """
-Tests for skillforge.commands.compat — platform compatibility checker.
+Tests for toolmark.commands.compat — platform compatibility checker.
 No external API calls required.
 """
 
-from skillforge.commands.compat import PLATFORM_CONSTRAINTS, _check_platform
-from skillforge.models import CompatStatus, Platform
+from toolmark.commands.compat import PLATFORM_CONSTRAINTS, _check_platform
+from toolmark.models import CompatStatus, Platform
 
 
 def _base_manifest():

@@ -22,13 +22,13 @@ from rich.console import Console
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 from rich.table import Table
 
-from skillforge.models import (
+from toolmark.models import (
     SkillManifest,
     SkillTestCase,
     TestCaseResult,
 )
-from skillforge.utils.llm import llm_call, llm_judge
-from skillforge.utils.manifest import load_manifest
+from toolmark.utils.llm import llm_call, llm_judge
+from toolmark.utils.manifest import load_manifest
 
 console = Console()
 
@@ -143,7 +143,7 @@ def test_command(
     """Run LLM-as-judge evaluation against your skill's test cases."""
     import asyncio
 
-    from skillforge.config import load_config
+    from toolmark.config import load_config
 
     # Convert string path to Path object
     skill_dir = Path(skill_dir)

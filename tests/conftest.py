@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from skillforge.models import Platform, SkillManifest, SkillTool
+from toolmark.models import Platform, SkillManifest, SkillTool
 
 
 @pytest.fixture
