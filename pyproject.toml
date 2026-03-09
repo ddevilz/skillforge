@@ -63,6 +63,7 @@ dev = [
     "mypy>=1.10",
     "typer[all]",
     "types-pyyaml>=6.0.12.20250915",
+    "twine>=6.2.0",
 ]
 
 [tool.pytest.ini_options]

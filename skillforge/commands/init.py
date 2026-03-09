@@ -50,7 +50,7 @@ def init_command(
         "-p",
         help="Comma-separated platforms: clawhub,claude-code,cursor,windsurf",
     ),
-    output_dir: Path = typer.Option(
+    output_dir: str = typer.Option(
         ".",
         "--dir",
         "-d",
@@ -60,7 +60,7 @@ def init_command(
     """Scaffold a new SkillForge project with a SKILL.md, skill.json, and test suite."""
 
     # Convert string path to Path object
-    output_dir = Path(output_dir)
+    output_dir_path = Path(output_dir)
 
     # ── Validate inputs ───────────────────────────────────────────────────────
     import re
@@ -89,7 +89,7 @@ def init_command(
             raise typer.Exit(1) from err
 
     # ── Target directory ──────────────────────────────────────────────────────
-    skill_dir = output_dir / name
+    skill_dir = output_dir_path / name
     if skill_dir.exists():
         console.print(f"[red]✗[/] Directory [bold]{skill_dir}[/] already exists.")
         raise typer.Exit(1)
@@ -136,13 +136,13 @@ def init_command(
 
     # ── Print summary tree ────────────────────────────────────────────────────
     tree = Tree(f"[bold cyan]{name}/[/]")
-    for p in sorted(skill_dir.rglob("*")):
-        rel: Path = p.relative_to(skill_dir)
+    for path_item in sorted(skill_dir.rglob("*")):
+        rel: Path = path_item.relative_to(skill_dir)
         parts = rel.parts
         for _part in parts[:-1]:
             # find or create subtree — simplified: just show flat for now
             pass
-        icon = "📁" if p.is_dir() else "📄"
+        icon = "📁" if path_item.is_dir() else "📄"
         tree.add(f"{icon} {rel}")
 
     console.print(tree)
